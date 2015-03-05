@@ -48,4 +48,13 @@ RUN apt-get update; \
         --with-xpm-dir=/usr \
         --with-xsl \
         --with-zlib; \
-    make && make install;
+    make && make install; \
+    ln -s /opt/php55/bin/php /usr/local/bin/php; \
+    mkdir -p /var/log/php/; \
+    mkdir -p /var/www/www55; \
+    touch /var/log/php/php55-fpm-error.log;
+
+ADD ./etc/init.d/php55-fpm.bash /etc/init.d/php55-fpm
+ADD ./etc/fpm/fpm-pool-common.conf /opt/etc/fpm/fpm-pool-common.conf
+ADD ./etc/php55-fpm.conf /opt/php55/etc/php55-fpm.conf
+ADD ./etc/pool.d/www-data.conf /opt/php55/etc/pool.d/www-data.conf
