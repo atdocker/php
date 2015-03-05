@@ -1,7 +1,7 @@
 FROM atdocker/nginx:latest
 
 RUN apt-get update; \
-  apt-get install -y libxml2-dev libcurl4-openssl-dev pkg-config libjpeg-dev libpng-dev; \
+  apt-get install -y libxml2-dev libcurl4-openssl-dev pkg-config libjpeg-dev libpng-dev libxpm-dev libfreetype6-dev libc-client-dev; \
   mkdir -p mkdir -p /opt/php56; \
   wget http://sg3.php.net/distributions/php-5.6.6.tar.gz; \
   tar zxf php-5.6.6.tar.gz; \
@@ -27,7 +27,6 @@ RUN apt-get update; \
       --with-fpm-user=www-data \
       --with-freetype-dir=/usr \
       --with-gd \
-      --with-gmp \
       --with-imap-ssl \
       --with-imap \
       --with-jpeg-dir=/usr \
@@ -41,7 +40,6 @@ RUN apt-get update; \
       --with-pdo-mysql=/usr \
       --with-pear \
       --with-png-dir=/usr \
-      --with-t1lib=/usr \
       --with-xmlrpc \
       --with-xpm-dir=/usr \
       --with-xsl \
