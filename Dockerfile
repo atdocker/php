@@ -1,12 +1,12 @@
 FROM atdocker/nginx:latest
 
 RUN apt-get update; \
-  apt-get install -y libxml2-dev libcurl4-openssl-dev pkg-config libjpeg-dev libpng-dev libxpm-dev libfreetype6-dev libc-client-dev; \
-  mkdir -p mkdir -p /opt/php56; \
-  wget http://sg3.php.net/distributions/php-5.6.6.tar.gz; \
-  tar zxf php-5.6.6.tar.gz; \
-  rm -f *.gz; \
-  cd /opt/php56/php-5.6.6; \
+    apt-get install -y libxml2-dev libcurl4-openssl-dev pkg-config libjpeg-dev libpng-dev libxpm-dev libfreetype6-dev libc-client-dev; \
+    mkdir -p mkdir -p /opt/php55; \
+    wget http://sg3.php.net/distributions/php-5.5.22.tar.gz; \
+    tar zxf php-5.5.22.tar.gz; \
+    rm -f *.gz; \
+    cd /opt/php55/php-5.5.22; \
     ./configure \
       --enable-bcmath \
       --enable-calendar \
@@ -20,9 +20,8 @@ RUN apt-get update; \
       --enable-soap \
       --enable-zip \
       --prefix=/opt/php55 \
-      --prefix=/usr/php56 \
+      --prefix=/usr/php55 \
       --with-curl \
-      --with-curlwrappers \
       --with-fpm-group=www-data \
       --with-fpm-user=www-data \
       --with-freetype-dir=/usr \
@@ -43,4 +42,4 @@ RUN apt-get update; \
       --with-xmlrpc \
       --with-xpm-dir=/usr \
       --with-xsl \
-      --with-zlib; \
+      --with-zlib;
