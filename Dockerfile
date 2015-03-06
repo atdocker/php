@@ -51,8 +51,15 @@ RUN apt-get update; \
     make && make install; \
     ln -s /opt/php55/bin/php /usr/local/bin/php; \
     mkdir -p /var/log/php/; \
-    mkdir -p /var/www/www55; \
-    touch /var/log/php/php55-fpm-error.log;
+    touch /var/log/php/php55-fpm-error.log; \
+    ln -s /opt/php55/bin/php /usr/local/bin/php; \
+
+    # ---------------------; \
+    # Install composer     ; \
+    # ---------------------; \
+    curl -sS https://getcomposer.org/installer | php; \
+    chmod a+x composer.phar; \
+    mv composer.phar /usr/local/bin/composer;
 
 ADD ./etc/init.d/php55-fpm.bash /etc/init.d/php55-fpm
 ADD ./etc/fpm/fpm-pool-common.conf /opt/etc/fpm/fpm-pool-common.conf
