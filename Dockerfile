@@ -59,7 +59,14 @@ RUN apt-get update; \
     # ---------------------; \
     curl -sS https://getcomposer.org/installer | php; \
     chmod a+x composer.phar; \
-    mv composer.phar /usr/local/bin/composer;
+    mv composer.phar /usr/local/bin/composer; \
+
+    # ---------------------; \
+    # Install PHPUnit      ; \
+    # ---------------------; \
+    wget https://phar.phpunit.de/phpunit.phar; \
+    chmod a+x phpunit.phar; \
+    mv phpunit.phar /usr/local/bin/phpunit;
 
 ADD ./etc/init.d/php55-fpm.bash /etc/init.d/php55-fpm
 ADD ./etc/fpm/fpm-pool-common.conf /opt/etc/fpm/fpm-pool-common.conf
