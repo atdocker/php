@@ -1,5 +1,8 @@
 FROM atdocker/nginx:latest
 
+ADD ./etc/init.d/php55-fpm.bash                         /etc/init.d/php55-fpm
+ADD ./etc/supervisor/config.d/supervisord-php55fpm.conf /etc/supervisor/config.d/supervisord-php55fpm.conf
+
 RUN apt-get update; \
     apt-get install -y libmysqlclient18 mysql-common libdbd-mysql-perl libmysqlclient-dev libxslt1-dev; \
     apt-get install -y libjpeg-dev libpng-dev libxpm-dev libfreetype6-dev libc-client-dev; \
@@ -66,9 +69,21 @@ RUN apt-get update; \
     # ---------------------; \
     wget https://phar.phpunit.de/phpunit.phar; \
     chmod a+x phpunit.phar; \
-    mv phpunit.phar /usr/local/bin/phpunit;
+    mv phpunit.phar /usr/local/bin/phpunit; \
 
-ADD ./etc/init.d/php55-fpm.bash /etc/init.d/php55-fpm
+    # ---------------------; \
+    # Make sure the help script is executable \
+    # ---------------------; \
+    mkdir -p /var/www/html; \
+    chmod a+x /etc/init.d/php55-fpm;
+
 ADD ./etc/fpm/fpm-pool-common.conf /opt/etc/fpm/fpm-pool-common.conf
-ADD ./etc/php55-fpm.conf /opt/php55/etc/php55-fpm.conf
-ADD ./etc/pool.d/www-data.conf /opt/php55/etc/pool.d/www-data.conf
+ADD ./etc/php55-fpm.conf           /opt/php55/etc/php55-fpm.conf
+ADD ./etc/pool.d/www-data.conf     /opt/php55/etc/pool.d/www-data.conf
+
+# ---------------------
+# Build child image build
+# ---------------------
+ONBUILD RUN chown -R www-data:www-data /var/www/html
+
+CMD exec supervisord -n
