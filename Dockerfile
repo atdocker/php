@@ -52,6 +52,7 @@ RUN apt-get update; \
         --with-xsl \
         --with-zlib; \
     make && make install; \
+    rm -rf /opt/php55/src; \
     ln -s /opt/php55/bin/php /usr/local/bin/php; \
     mkdir -p /var/log/php/; \
     touch /var/log/php/php55-fpm-error.log; \
