@@ -1,7 +1,7 @@
 FROM atdocker/nginx:latest
 
 ADD ./etc/init.d/php55-fpm.bash                       /etc/init.d/php55-fpm
-ADD ./etc/supervisor/conf.d/supervisord-php55fpm.conf /etc/supervisor/config.d/supervisord-php55fpm.conf
+ADD ./etc/supervisor/conf.d/supervisord-php55fpm.conf /etc/supervisor/conf.d/supervisord-php55fpm.conf
 
 RUN apt-get update; \
     apt-get install -y libmysqlclient18 mysql-common libdbd-mysql-perl libmysqlclient-dev libxslt1-dev; \
