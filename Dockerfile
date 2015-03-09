@@ -81,6 +81,8 @@ RUN apt-get update; \
 ADD ./etc/fpm/fpm-pool-common.conf /opt/etc/fpm/fpm-pool-common.conf
 ADD ./etc/php55-fpm.conf           /opt/php55/etc/php55-fpm.conf
 ADD ./etc/pool.d/www-data.conf     /opt/php55/etc/pool.d/www-data.conf
+ADD ./etc/nginx/sites-enabled/*    /etc/nginx/sites-enabled/
+ADD ./www/*                        /var/www/html/
 
 # ---------------------
 # Build child image build
