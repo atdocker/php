@@ -61,16 +61,18 @@ RUN apt-get update; \
     # ---------------------; \
     # Install composer     ; \
     # ---------------------; \
+    cd /; \
     curl -sS https://getcomposer.org/installer | php; \
-    chmod a+x composer.phar; \
-    mv composer.phar /usr/local/bin/composer; \
+    chmod a+x /composer.phar; \
+    mv /composer.phar /usr/local/bin/composer; \
 
     # ---------------------; \
     # Install PHPUnit      ; \
     # ---------------------; \
+    cd /; \
     wget https://phar.phpunit.de/phpunit.phar; \
-    chmod a+x phpunit.phar; \
-    mv phpunit.phar /usr/local/bin/phpunit; \
+    chmod a+x /phpunit.phar; \
+    mv /phpunit.phar /usr/local/bin/phpunit; \
 
     # ---------------------; \
     # Make sure the help script is executable \
